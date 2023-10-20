@@ -6,10 +6,12 @@ from utils.general import init_seeds
 def run_SensitiveAnalysis(args, device='cpu'):
     # prepare model
     print("Prepare Model ....")
-    model = quantize.prepare_model(args.weights, device)
+    quantize.initialize()
+    model = quantize.load_yolov7_model(args.weights, device)
     quantize.replace_to_quantization_model(model)
     # prepare dataset
     print("Prepare Dataset ....")
+    print(args.cocodir)
     train_dataloader = quantize.create_coco_train_dataloader(args.cocodir, batch_size=args.batch_size)
     val_dataloader = quantize.create_coco_val_dataloader(args.cocodir, batch_size=args.batch_size)
     # calibration model
@@ -22,7 +24,8 @@ def run_SensitiveAnalysis(args, device='cpu'):
 def run_PTQ(args, device='cpu'):
     # prepare model
     print("Prepare Model ....")
-    model = quantize.prepare_model(args.weights, device)
+    quantize.initialize()
+    model = quantize.load_yolov7_model(args.weights, device)
     quantize.replace_to_quantization_model(model, args.ignore_layers)
     # prepare dataset
     print("Prepare Dataset ....")
@@ -37,11 +40,11 @@ def run_PTQ(args, device='cpu'):
     if args.eval_origin:
         print("Evaluate Origin...")
         with quantize.disable_quantization(model):
-            ap = quantize.evaluate_coco(model, val_dataloader, conf_thres=args.conf_thres, iou_thres=args.iou_thres)
+            ap = quantize.evaluate_coco(model, val_dataloader, True, conf_thres=args.conf_thres, iou_thres=args.iou_thres)
             summary.append(["Origin", ap])
     if args.eval_ptq:
         print("Evaluate PTQ...")
-        ap = quantize.evaluate_coco(model, val_dataloader, conf_thres=args.conf_thres, iou_thres=args.iou_thres)
+        ap = quantize.evaluate_coco(model, val_dataloader, True, conf_thres=args.conf_thres, iou_thres=args.iou_thres)
         summary.append(["PTQ", ap])
 
     if args.save_ptq:
@@ -82,7 +85,7 @@ if __name__ == '__main__':
     # 敏感层分析
     if args.sensitive:
         print("Sensitive Analysis....")
-        run_SensitiveAnalysis(args.weights, args.cocodir, device)
+        run_SensitiveAnalysis(args, device)
 
     # PTQ 量化
     ignore_layers= ["model\.105\.m\.(.*)", "model\.99\.m\.(.*)"]
