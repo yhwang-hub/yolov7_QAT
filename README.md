@@ -1,3 +1,125 @@
+# Description
+![Language](https://img.shields.io/badge/language-c++-brightgreen)
+![Language](https://img.shields.io/badge/CUDA-11.1-brightgreen) 
+![Language](https://img.shields.io/badge/TensorRT-8.5.1.7-brightgreen)
+![Language](https://img.shields.io/badge/OpenCV-4.5.5-brightgreen) 
+![Language](https://img.shields.io/badge/ubuntu-16.04-brightorigin)
+
+This is a repository for QAT finetune on yolov7 using [TensorRT's pytorch_quantization tool](https://github.com/NVIDIA/TensorRT/tree/main/tools/pytorch-quantization)
+|  Method   | Calibration method  | mAP<sup>val<br>0.5|mAP<sup>val<br>0.5:0.95 |batch-1 fps<br>Jetson Orin-X  |batch-16 fps<br>Jetson Orin-X  |weight|
+|  ----  | ----  |----  |----  |----|----|-|
+| pytorch FP16 | -             | 0.6972 | 0.5120 |-|-|[yolov7.pt](https://github.com/WongKinYiu/yolov7/releases/download/v0.1/yolov7.pt)|
+| pytorch PTQ-INT8  | Histogram(MSE)  | 0.6957 | 0.5100 |-|-|[yolov7_ptq.pt](https://drive.google.com/file/d/1AMymKjKMDmhuNSI3jzL6dv_Pc3rdDDj1/view?usp=sharing) [yolov7_ptq_640.onnx](https://drive.google.com/file/d/1kvCV8PxV6RCidehN4Wp78M116oZ_mSTX/view?usp=sharing)|
+| pytorch QAT-INT8  | Histogram(MSE)  | 0.6961 | 0.5111 |-|-|[yolov7_qat.pt](https://drive.google.com/file/d/16Ylot5AfkjKeCyVlX3ECsuT6VmHULkd-/view?usp=sharing)|
+| TensorRT FP16| -             | 0.6973 | 0.5124 |140 |168|[yolov7.onnx](https://drive.google.com/file/d/1R5muSJWVC_BQKml4s4wQQewUXdmQl0Mm/view?usp=sharing) |
+| TensorRT PTQ-INT8 | TensorRT built in EntropyCalibratorV2 | 0.6317 | 0.4573 |207|264|-|
+| TensorRT QAT-INT8 | Histogram(MSE)  | 0.6962 | 0.5113 |207|266|[yolov7_qat_640.onnx](https://drive.google.com/file/d/1qn-p4N3GZojIOvvxkzmPGCQKR6q4ov73/view?usp=sharing)|
+ - The above table comes from [https://github.com/NVIDIA-AI-IOT/yolo_deepstream/tree/main/yolov7_qat](https://github.com/NVIDIA-AI-IOT/yolo_deepstream/blob/main/yolov7_qat/README.md)
+ - network input resolution: 3x640x640
+ - note: trtexec cudaGraph is enabled
+
+# How To QAT Training
+
+## 1.Setup
+Suggest to use docker environment.
+
+Download docker image：
+```
+docker pull longxiaowyh/yolov7:v1
+```
+Create docker container：
+```
+nvidia-docker run -itu root:root --name yolov7 --gpus all -v /your_path:/target_path -v /tmp/.X11-unix/:/tmp/.X11-unix/ -e DISPLAY=unix$DISPLAY -e GDK_SCALE -e GDK_DPI_SCALE  -e NVIDIA_VISIBLE_DEVICES=all -e NVIDIA_DRIVER_CAPABILITIES=compute,utility --shm-size=64g yolov7:v1 /bin/bash
+```
+
+1.Clone and apply patch
+
+```
+git clone git@github.com:yhwang-hub/yolov7_quantization.git
+```
+2.Install dependencies
+```
+pip install pytorch-quantization --extra-index-url https://pypi.ngc.nvidia.com
+```
+3.Prepare coco dataset
+```
+.
+├── annotations
+│   ├── captions_train2017.json
+│   ├── captions_val2017.json
+│   ├── instances_train2017.json
+│   ├── instances_val2017.json
+│   ├── person_keypoints_train2017.json
+│   └── person_keypoints_val2017.json
+├── coco -> coco
+├── coco128
+│   ├── images
+│   ├── labels
+│   ├── LICENSE
+│   └── README.txt
+├── images
+│   ├── train2017
+│   └── val2017
+├── labels
+│   ├── train2017
+│   ├── train2017.cache
+│   └── val2017
+├── train2017.cache
+├── train2017.txt
+├── val2017.cache
+└── val2017.txt
+```
+
+## 2.Start PTQ
+### 2.1 Start sensitive layer analysis
+```
+python ptq.py --weights ./weights/yolov7s.pt --cocodir /home/wyh/disk/coco/ --batch_size 5 --save_ptq True --eval_origin --eval_ptq --start_ptq False --sensitive True
+```
+Modify the ignore_layers parameter in ptq.py as follows
+```
+parser.add_argument("--ignore_layers", type=str, default="model\.105\.m\.(.*)", help="regx")
+```
+### 2.2 Start PTQ
+```
+python ptq.py --weights ./weights/yolov7s.pt --cocodir /home/wyh/disk/coco/ --batch_size 5 --save_ptq True --eval_origin --eval_ptq --start_ptq True --sensitive False
+```
+
+## 3.Start QAT Training
+```
+python qat.py --weights ./weights/yolov5s.pt --cocodir /home/wyh/disk/coco/ --batch_size 5 --save_ptq True --save_qat True --eval_origin --eval_ptq --eval_qat
+```
+This script includes steps below:
+
+- Insert Q&DQ nodes to get fake-quant pytorch model
+  [Pytorch quntization tool ](https://github.com/NVIDIA/TensorRT/tree/main/tools/pytorch-quantization)provides automatic insertion of QDQ function. But for yolov7 model, it can not get the same performance as PTQ, because in Explicit mode(QAT mode), TensorRT will henceforth refer Q/DQ nodes' placement to restrict the precision of the model. Some of the automatic added Q&DQ nodes can not be fused with other layers which will cause some extra useless precision convertion. In our script, We find Some rules and restrictions for yolov7, QDQ nodes are automatically analyzed and configured in a rule-based manner, ensuring that they are optimal under TensorRT. Ensuring that all nodes are running INT8(confirmed with tool:[trt-engine-explorer](https://github.com/NVIDIA/TensorRT/tree/main/tools/experimental/trt-engine-explorer), see [scripts/draw-engine.py](https://github.com/NVIDIA-AI-IOT/yolo_deepstream/blob/main/yolov7_qat/scripts/draw-engine.py)). for details of this part, please refer quantization/rules.py, About the guidance of Q&DQ insert, please refer [Guidance_of_QAT_performance_optimization](https://github.com/NVIDIA-AI-IOT/yolo_deepstream/blob/main/yolov7_qat/doc/Guidance_of_QAT_performance_optimization.md)
+
+- PTQ calibration
+  After inserting Q&DQ nodes, we recommend to run PTQ-Calibration first. Per experiments, Histogram(MSE) is the best PTQ calibration method for yolov7. Note: if you are satisfied with PTQ result, you could also skip QAT.
+
+- QAT training
+  After QAT, need to finetune traning our model. after getting the accuracy we are satisfied, Saving the weights to files
+
+See the run_qat.log file for the running results, ptq.onnx and qat.onnx will be generated in this path.
+
+# Benchmark
+```
+# 生成engine
+trtexec --onnx=./outdir-no-rule/ptq.onnx --fp16 --int8 --verbose --saveEngine=./outdir-no-rule/yolo_ptq.engine --workspace=1024000 --warmUp=500 --duration=10 --useCudaGraph --useSpinWait --noDataTransfers --exportLayerInfo=./outdir-no-rule/yolov7_ptq_layer.json --profilingVerbosity=detailed --exportProfile=./outdir-no-rule/yolov7_ptq_profile.json
+
+trtexec --onnx=./outdir-no-rule/qat.onnx --fp16 --int8 --verbose --saveEngine=./outdir-no-rule/yolo_qat.engine --workspace=1024000 --warmUp=500 --duration=10 --useCudaGraph --useSpinWait --noDataTransfers --exportLayerInfo=./outdir-no-rule/yolov7_qat_layer.json --profilingVerbosity=detailed --exportProfile=./outdir-no-rule/yolov7_qat_profile.json
+
+# 测试性能
+trtexec --loadEngine=./outdir-no-rule/yolo_ptq.engine --batch=1
+trtexec --loadEngine=./outdir-no-rule/yolo_qat.engine --batch=1
+
+# engine可视化
+python scripts/draw-engine.py --layer=./outdir-no-rule/yolov7_ptq_layer.json --profile=./outdir-no-rule/yolov7_ptq_profile.json
+python scripts/draw-engine.py --layer=./outdir-no-rule/yolov7_qat_layer.json --profile=./outdir-no-rule/yolov7_qat_profile.json
+```
+RTX3060  qps test result as follow：
+![image](https://github.com/yhwang-hub/yolov7_quantization/blob/master/image/qps_test_result.jpg)
+
+
 # Official YOLOv7
 
 Implementation of paper - [YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors](https://arxiv.org/abs/2207.02696)
@@ -306,5 +428,5 @@ YOLOv7-3d-detection & YOLOv7-lidar & YOLOv7-road (with NTUT)
 * [https://github.com/DingXiaoH/RepVGG](https://github.com/DingXiaoH/RepVGG)
 * [https://github.com/JUGGHM/OREPA_CVPR2022](https://github.com/JUGGHM/OREPA_CVPR2022)
 * [https://github.com/TexasInstruments/edgeai-yolov5/tree/yolo-pose](https://github.com/TexasInstruments/edgeai-yolov5/tree/yolo-pose)
-
+* [https://github.com/NVIDIA-AI-IOT/yolo_deepstream/tree/main/yolov7_qat](https://github.com/NVIDIA-AI-IOT/yolo_deepstream/tree/main/yolov7_qat)
 </details>
