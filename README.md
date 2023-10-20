@@ -117,7 +117,9 @@ python scripts/draw-engine.py --layer=./outdir-no-rule/yolov7_ptq_layer.json --p
 python scripts/draw-engine.py --layer=./outdir-no-rule/yolov7_qat_layer.json --profile=./outdir-no-rule/yolov7_qat_profile.json
 ```
 RTX3060  qps test result as follow：
-![image](https://github.com/yhwang-hub/yolov7_quantization/blob/main/qps_test_result.jpg)
+
+![image](https://github.com/yhwang-hub/yolov7_quantization/blob/main/mAP.jpg)
+![image](https://github.com/yhwang-hub/yolov7_quantization/blob/main/qps.png)
 
 
 # Official YOLOv7
