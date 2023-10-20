@@ -1,0 +1,2530 @@
+root@593cf1d87e98:/home/wyh/yolov7# python qat.py --weights ./weights/yolov7.pt --cocodir /home/wyh/disk/coco/ --batch_size 5 --save_ptq True --ptq ptq_yolov7.pt --save_qat True --qat qat_yolov7.pt --eval_origin --eval_ptq --eval_qat
+Prepare Model ....
+Fusing layers... 
+RepConv.fuse_repvgg_block
+RepConv.fuse_repvgg_block
+RepConv.fuse_repvgg_block
+Prepare Dataset ....
+Scanning '/home/wyh/disk/coco/val2017.cache' images and labels... 5000 found, 0 missing, 48 empty, 0 corrupted: 100%|███████████████████████████████████████████████████████████| 5000/5000 [00:00<?, ?it/s]
+Scanning '/home/wyh/disk/coco/train2017.cache' images and labels... 118287 found, 0 missing, 1021 empty, 4 corrupted: 100%|█████████████████████████████████████████████████| 118287/118287 [00:00<?, ?it/s]
+Quantization : model.105.m.0 has ignored.
+Quantization : model.105.m.1 has ignored.
+Quantization : model.105.m.2 has ignored.
+sucessfully export yolov7 ptq onnx!
+Rules: model.6.conv match to model.11.conv
+Rules: model.8.conv match to model.11.conv
+Rules: model.14.conv match to model.13.conv
+Rules: model.18.conv match to model.17.conv
+Rules: model.19.conv match to model.24.conv
+Rules: model.21.conv match to model.24.conv
+Rules: model.27.conv match to model.26.conv
+Rules: model.66.conv match to model.26.conv
+Rules: model.31.conv match to model.30.conv
+Rules: model.32.conv match to model.37.conv
+Rules: model.34.conv match to model.37.conv
+Rules: model.40.conv match to model.39.conv
+Rules: model.54.conv match to model.39.conv
+Rules: model.44.conv match to model.43.conv
+Rules: model.45.conv match to model.50.conv
+Rules: model.47.conv match to model.50.conv
+Rules: model.57.conv match to model.56.conv
+Rules: model.58.conv match to model.63.conv
+Rules: model.59.conv match to model.63.conv
+Rules: model.60.conv match to model.63.conv
+Rules: model.61.conv match to model.63.conv
+Rules: model.69.conv match to model.68.conv
+Rules: model.70.conv match to model.75.conv
+Rules: model.71.conv match to model.75.conv
+Rules: model.72.conv match to model.75.conv
+Rules: model.73.conv match to model.75.conv
+Rules: model.78.conv match to model.77.conv
+Rules: model.102.rbr_reparam match to model.77.conv
+Rules: model.64.conv match to model.81.conv
+Rules: model.82.conv match to model.81.conv
+Rules: model.64.conv match to model.81.conv
+Rules: model.83.conv match to model.88.conv
+Rules: model.84.conv match to model.88.conv
+Rules: model.85.conv match to model.88.conv
+Rules: model.86.conv match to model.88.conv
+Rules: model.91.conv match to model.90.conv
+Rules: model.103.rbr_reparam match to model.90.conv
+Rules: model.52.conv match to model.94.conv
+Rules: model.95.conv match to model.94.conv
+Rules: model.52.conv match to model.94.conv
+Rules: model.96.conv match to model.101.conv
+Rules: model.97.conv match to model.101.conv
+Rules: model.98.conv match to model.101.conv
+Rules: model.99.conv match to model.101.conv
+Begining Calibration ....
+Collect stats for calibrating: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 25/25 [00:11<00:00,  2.16it/s]
+Evaluate Origin...
+               Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95: 100%|█████████████████████████████████████████████████████████████████████| 1000/1000 [01:47<00:00,  9.32it/s]
+                 all        5000       36781       0.713       0.641       0.687       0.495
+
+Evaluating pycocotools mAP... saving _predictions.json...
+NOTE! Installing ujson may make loading annotations faster.
+loading annotations into memory...
+Done (t=0.37s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=2.88s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=40.68s).
+Accumulating evaluation results...
+DONE (t=9.20s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.51176
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.69731
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.55522
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.35130
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.55927
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.66692
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.38440
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.63733
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.68743
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.53574
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.73545
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.83809
+Evaluate PTQ...
+               Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95: 100%|█████████████████████████████████████████████████████████████████████| 1000/1000 [02:42<00:00,  6.17it/s]
+                 all        5000       36781       0.721       0.632       0.686       0.492
+
+Evaluating pycocotools mAP... saving _predictions.json...
+loading annotations into memory...
+Done (t=0.68s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=3.11s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=40.70s).
+Accumulating evaluation results...
+DONE (t=9.80s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.50952
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.69586
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.55176
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.34921
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.55826
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.66440
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.38434
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.63501
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.68534
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.52997
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.73375
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.83482
+Export PTQ...
+sucessfully export yolov7 ptq onnx!
+Begining Finetune ....
+Supervision: model.0 will compute loss with origin model during QAT training...
+Supervision: model.1 will compute loss with origin model during QAT training...
+Supervision: model.2 will compute loss with origin model during QAT training...
+Supervision: model.3 will compute loss with origin model during QAT training...
+Supervision: model.4 will compute loss with origin model during QAT training...
+Supervision: model.5 will compute loss with origin model during QAT training...
+Supervision: model.6 will compute loss with origin model during QAT training...
+Supervision: model.7 will compute loss with origin model during QAT training...
+Supervision: model.8 will compute loss with origin model during QAT training...
+Supervision: model.9 will compute loss with origin model during QAT training...
+Supervision: model.10 will compute loss with origin model during QAT training...
+Supervision: model.11 will compute loss with origin model during QAT training...
+Supervision: model.12 will compute loss with origin model during QAT training...
+Supervision: model.13 will compute loss with origin model during QAT training...
+Supervision: model.14 will compute loss with origin model during QAT training...
+Supervision: model.15 will compute loss with origin model during QAT training...
+Supervision: model.16 will compute loss with origin model during QAT training...
+Supervision: model.17 will compute loss with origin model during QAT training...
+Supervision: model.18 will compute loss with origin model during QAT training...
+Supervision: model.19 will compute loss with origin model during QAT training...
+Supervision: model.20 will compute loss with origin model during QAT training...
+Supervision: model.21 will compute loss with origin model during QAT training...
+Supervision: model.22 will compute loss with origin model during QAT training...
+Supervision: model.23 will compute loss with origin model during QAT training...
+Supervision: model.24 will compute loss with origin model during QAT training...
+Supervision: model.25 will compute loss with origin model during QAT training...
+Supervision: model.26 will compute loss with origin model during QAT training...
+Supervision: model.27 will compute loss with origin model during QAT training...
+Supervision: model.28 will compute loss with origin model during QAT training...
+Supervision: model.29 will compute loss with origin model during QAT training...
+Supervision: model.30 will compute loss with origin model during QAT training...
+Supervision: model.31 will compute loss with origin model during QAT training...
+Supervision: model.32 will compute loss with origin model during QAT training...
+Supervision: model.33 will compute loss with origin model during QAT training...
+Supervision: model.34 will compute loss with origin model during QAT training...
+Supervision: model.35 will compute loss with origin model during QAT training...
+Supervision: model.36 will compute loss with origin model during QAT training...
+Supervision: model.37 will compute loss with origin model during QAT training...
+Supervision: model.38 will compute loss with origin model during QAT training...
+Supervision: model.39 will compute loss with origin model during QAT training...
+Supervision: model.40 will compute loss with origin model during QAT training...
+Supervision: model.41 will compute loss with origin model during QAT training...
+Supervision: model.42 will compute loss with origin model during QAT training...
+Supervision: model.43 will compute loss with origin model during QAT training...
+Supervision: model.44 will compute loss with origin model during QAT training...
+Supervision: model.45 will compute loss with origin model during QAT training...
+Supervision: model.46 will compute loss with origin model during QAT training...
+Supervision: model.47 will compute loss with origin model during QAT training...
+Supervision: model.48 will compute loss with origin model during QAT training...
+Supervision: model.49 will compute loss with origin model during QAT training...
+Supervision: model.50 will compute loss with origin model during QAT training...
+Supervision: model.51 will compute loss with origin model during QAT training...
+Supervision: model.52 will compute loss with origin model during QAT training...
+Supervision: model.53 will compute loss with origin model during QAT training...
+Supervision: model.54 will compute loss with origin model during QAT training...
+Supervision: model.55 will compute loss with origin model during QAT training...
+Supervision: model.56 will compute loss with origin model during QAT training...
+Supervision: model.57 will compute loss with origin model during QAT training...
+Supervision: model.58 will compute loss with origin model during QAT training...
+Supervision: model.59 will compute loss with origin model during QAT training...
+Supervision: model.60 will compute loss with origin model during QAT training...
+Supervision: model.61 will compute loss with origin model during QAT training...
+Supervision: model.62 will compute loss with origin model during QAT training...
+Supervision: model.63 will compute loss with origin model during QAT training...
+Supervision: model.64 will compute loss with origin model during QAT training...
+Supervision: model.65 will compute loss with origin model during QAT training...
+Supervision: model.66 will compute loss with origin model during QAT training...
+Supervision: model.67 will compute loss with origin model during QAT training...
+Supervision: model.68 will compute loss with origin model during QAT training...
+Supervision: model.69 will compute loss with origin model during QAT training...
+Supervision: model.70 will compute loss with origin model during QAT training...
+Supervision: model.71 will compute loss with origin model during QAT training...
+Supervision: model.72 will compute loss with origin model during QAT training...
+Supervision: model.73 will compute loss with origin model during QAT training...
+Supervision: model.74 will compute loss with origin model during QAT training...
+Supervision: model.75 will compute loss with origin model during QAT training...
+Supervision: model.76 will compute loss with origin model during QAT training...
+Supervision: model.77 will compute loss with origin model during QAT training...
+Supervision: model.78 will compute loss with origin model during QAT training...
+Supervision: model.79 will compute loss with origin model during QAT training...
+Supervision: model.80 will compute loss with origin model during QAT training...
+Supervision: model.81 will compute loss with origin model during QAT training...
+Supervision: model.82 will compute loss with origin model during QAT training...
+Supervision: model.83 will compute loss with origin model during QAT training...
+Supervision: model.84 will compute loss with origin model during QAT training...
+Supervision: model.85 will compute loss with origin model during QAT training...
+Supervision: model.86 will compute loss with origin model during QAT training...
+Supervision: model.87 will compute loss with origin model during QAT training...
+Supervision: model.88 will compute loss with origin model during QAT training...
+Supervision: model.89 will compute loss with origin model during QAT training...
+Supervision: model.90 will compute loss with origin model during QAT training...
+Supervision: model.91 will compute loss with origin model during QAT training...
+Supervision: model.92 will compute loss with origin model during QAT training...
+Supervision: model.93 will compute loss with origin model during QAT training...
+Supervision: model.94 will compute loss with origin model during QAT training...
+Supervision: model.95 will compute loss with origin model during QAT training...
+Supervision: model.96 will compute loss with origin model during QAT training...
+Supervision: model.97 will compute loss with origin model during QAT training...
+Supervision: model.98 will compute loss with origin model during QAT training...
+Supervision: model.99 will compute loss with origin model during QAT training...
+Supervision: model.100 will compute loss with origin model during QAT training...
+Supervision: model.101 will compute loss with origin model during QAT training...
+Supervision: model.102 will compute loss with origin model during QAT training...
+Supervision: model.103 will compute loss with origin model during QAT training...
+Supervision: model.104 will compute loss with origin model during QAT training...
+Supervision: model.105 not compute loss during QAT training...
+QAT Finetuning 1 / 10, Loss: 0.80079, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 1.77579, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.67046, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.85732, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 1.10833, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.82871, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 1.06587, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 1.02354, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.85224, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.99791, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.66222, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.43234, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.48663, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.38157, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.40843, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.56073, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.52047, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 1.05786, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.65271, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.46779, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.39926, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.80972, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.67355, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.45018, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.36713, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.57103, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.51517, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.55826, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.50380, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.61180, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.42907, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.58348, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.45733, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.49191, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.73823, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.51336, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.70044, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.45223, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.53261, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.39997, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.47477, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.49861, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.75531, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.52762, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.39427, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.51297, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.45282, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.48721, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.40425, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.44287, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.69170, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.54161, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.43651, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.60801, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.47372, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.37293, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.53311, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.61967, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.58506, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.51705, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.58550, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.44429, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.44812, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.54249, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.46433, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.40146, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.59887, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.39262, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.41259, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.62259, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.64962, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.44738, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.49632, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.44113, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.49560, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.52496, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.54668, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.42850, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.45548, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.41621, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.57122, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.45782, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.44753, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.41455, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.34353, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.38260, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.42163, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.46654, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.50024, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.55207, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.56147, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.55508, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.37506, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.49672, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.43349, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.52217, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.44779, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.47346, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.42148, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.69471, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.49178, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.47139, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 1.03133, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.30977, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.47477, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.58109, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.43056, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.62073, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.48546, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.58030, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.38197, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.53785, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.46383, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.38947, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.55458, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.51327, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.49470, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.41102, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.95791, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.47285, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.49879, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.34953, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.55840, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.43357, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.40579, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.40978, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.36301, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.47274, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.52642, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.43794, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.62853, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.53561, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.45780, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.38828, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.42508, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.37187, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.43925, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.52604, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.46242, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.63866, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.55465, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.47943, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.42675, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.36262, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.39594, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.42345, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.45218, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.50529, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.39205, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.53992, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.41128, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.39371, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.47937, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.47404, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.64928, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.44612, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.45582, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.45473, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.37589, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.42443, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.37039, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.46191, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.38365, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.47439, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.45849, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.40092, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.51468, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.43165, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.39331, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.35299, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.40399, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.39134, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.44064, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.37866, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.42600, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.37249, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.34872, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.47052, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.36596, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.43680, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.35708, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.54576, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.64067, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.44044, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.44200, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.36519, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.39905, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.46835, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.56526, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.57120, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.40334, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.47879, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.42297, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.45205, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.48323, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.58171, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.44433, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.34783, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.44356, LR: 1e-06
+QAT Finetuning 1 / 10, Loss: 0.33918, LR: 1e-06
+               Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95: 100%|█████████████████████████████████████████████████████████████████████| 1000/1000 [02:42<00:00,  6.15it/s]
+                 all        5000       36781       0.715       0.638       0.686       0.493
+
+Evaluating pycocotools mAP... saving _predictions.json...
+loading annotations into memory...
+Done (t=0.37s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=3.06s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=44.82s).
+Accumulating evaluation results...
+DONE (t=12.32s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.50967
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.69612
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.55197
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.34306
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.55843
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.66504
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.38354
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.63524
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.68605
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.52994
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.73514
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.83736
+Save qat model to qat_yolov7.pt @ 0.50967
+sucessfully export yolov7 ptq onnx!
+QAT Finetuning 2 / 10, Loss: 0.37314, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.47861, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.42786, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.40655, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.48561, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.50813, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.57083, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.46757, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.55585, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.38604, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.42363, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.48991, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.48533, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.44490, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.53393, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.43846, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.49414, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.46101, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.40679, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.50781, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.48398, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.39878, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.42433, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.47482, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.44216, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.55194, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.55841, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.50177, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.55211, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.52245, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.70855, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.45252, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.44203, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.42384, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.53824, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.50725, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.53389, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.45705, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.37868, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.43551, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.44439, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.46080, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.36371, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.36619, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.49278, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.46877, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.47425, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.41696, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.49447, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.36894, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.40319, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.39370, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.48683, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.60862, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.32154, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.41490, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.36916, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.50696, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.45200, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.43484, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.50300, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.56936, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.45699, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.33438, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.52633, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.44415, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.40048, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.39225, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.33665, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.66797, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.40416, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.45542, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.40298, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.58666, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.42956, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.48346, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.33225, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.38722, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.59212, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.43647, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.45263, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.58226, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.35724, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.41302, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.40482, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.54325, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.41657, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.44478, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.58982, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.41392, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.36259, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.48972, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.44327, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.39684, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.36130, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.48168, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.73869, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.39612, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.31885, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.42883, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.40047, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.39448, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.49954, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.39205, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.41927, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.82733, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.35721, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.44231, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.38719, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.42827, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.36825, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.46466, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.49860, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.37374, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.39921, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.45543, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.46670, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.41786, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.42770, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.35894, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.45925, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.40954, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.61579, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.40128, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.45590, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.33192, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.35728, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.55994, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.43911, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.47497, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.30648, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.35765, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.57778, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.49651, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.37446, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.38644, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.45323, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.50747, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.36672, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.38720, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.53339, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.44490, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.55824, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.44278, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.44696, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.70334, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.55634, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.52786, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.40256, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.45975, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.49710, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.46458, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.54994, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.39420, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.36483, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.30908, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.39374, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.37561, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.44027, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.36344, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.41056, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.37468, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.39287, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.38571, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.49067, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.41113, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.36563, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.41743, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.52037, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.47701, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.47044, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.45828, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.46109, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.45119, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.49831, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.51957, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.40098, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.57829, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.49854, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.37394, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.52568, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.59976, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.45494, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.46927, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.49795, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.32886, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.41572, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.47019, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.55259, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.34834, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.54231, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.46310, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.59156, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.50829, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.34860, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.39621, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.47982, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.36218, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.40561, LR: 1e-06
+QAT Finetuning 2 / 10, Loss: 0.40199, LR: 1e-06
+               Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95: 100%|█████████████████████████████████████████████████████████████████████| 1000/1000 [02:54<00:00,  5.74it/s]
+                 all        5000       36781       0.718       0.635       0.686       0.493
+
+Evaluating pycocotools mAP... saving _predictions.json...
+loading annotations into memory...
+Done (t=0.77s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=3.28s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=41.99s).
+Accumulating evaluation results...
+DONE (t=9.92s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.51013
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.69616
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.55201
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.35006
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.55913
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.66560
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.38411
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.63656
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.68679
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.53439
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.73511
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.83770
+Save qat model to qat_yolov7.pt @ 0.51013
+sucessfully export yolov7 ptq onnx!
+QAT Finetuning 3 / 10, Loss: 0.48479, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.39020, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.43111, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.38903, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.44075, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.38589, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.37846, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.51666, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.40886, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.48578, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.37641, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.60534, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.36485, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.45444, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.43132, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.45317, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.47869, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.49044, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.40236, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.40270, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.38678, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.76604, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.41127, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.42873, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.51585, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.36717, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.38044, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.84095, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.43172, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.45422, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.58026, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.40786, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.74881, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.67131, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.94662, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.54774, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.47955, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.52404, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.43842, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.43228, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.46089, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.46026, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.45557, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.43644, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.44599, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.54503, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.44655, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.46892, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.43753, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.46202, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.40833, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.36155, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.47889, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.41736, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.35566, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.79093, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.52271, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.56159, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.35889, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.44272, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.50506, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.59695, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.41438, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.39315, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.45253, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.39272, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.43846, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.59232, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.44679, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.53104, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.39946, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.47480, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.50228, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.38658, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.44430, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.48693, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.48599, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.54938, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.38960, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.43101, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.42555, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.53877, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.41572, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.38062, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.32636, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.41259, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.69687, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.59728, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.48959, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.58479, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.44674, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.44242, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.36645, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.37359, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.38583, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.53164, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.48643, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.47571, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.43179, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.40518, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.51175, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.41261, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.43145, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.41017, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.37895, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.37643, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.35136, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.46610, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.46072, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.43990, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.36884, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.44109, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.57528, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.35718, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.43973, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.63005, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.39203, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.42221, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.45700, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.40206, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.45478, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.39077, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.39396, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.37848, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.39776, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.54085, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.50629, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.48070, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.49979, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.41767, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.44128, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.39584, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.61981, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.42062, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.43011, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.34174, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.35674, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.41446, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.52929, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.42493, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.39845, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.35586, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.43368, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.37857, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.51134, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.33893, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.40602, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.44917, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.43918, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.51978, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.56110, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.39332, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.41305, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.46847, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.55740, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.39286, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.44080, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.34799, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.35909, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.52535, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.39345, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.37747, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.45255, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.32344, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.47304, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.56557, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.44771, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.37868, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.36312, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.39949, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.34113, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.35921, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.36158, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.41675, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.46552, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.41087, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.39406, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.42445, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.47841, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.44217, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.39536, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.38267, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.40232, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.32632, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.55635, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.40301, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.46777, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.46596, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.44586, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.39062, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.47336, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.33417, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.53885, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.36075, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.42464, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.42446, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.54153, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.38435, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.30223, LR: 1e-06
+QAT Finetuning 3 / 10, Loss: 0.38838, LR: 1e-06
+               Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95: 100%|█████████████████████████████████████████████████████████████████████| 1000/1000 [02:59<00:00,  5.58it/s]
+                 all        5000       36781       0.723       0.633       0.686       0.494
+
+Evaluating pycocotools mAP... saving _predictions.json...
+loading annotations into memory...
+Done (t=0.74s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=3.24s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=41.06s).
+Accumulating evaluation results...
+DONE (t=10.05s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.51039
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.69609
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.55258
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.34441
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.55958
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.66507
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.38391
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.63573
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.68634
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.53394
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.73573
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.83640
+Save qat model to qat_yolov7.pt @ 0.51039
+sucessfully export yolov7 ptq onnx!
+QAT Finetuning 4 / 10, Loss: 0.49995, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.71017, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.49804, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.39298, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.52397, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.47838, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.45067, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.52873, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.44749, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.75301, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.44239, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.51269, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.41812, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.60664, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.46037, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.55605, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.54875, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.54558, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.36518, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.67183, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.49492, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.38200, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.57072, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.59476, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.53710, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.59198, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.44439, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.37681, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.45342, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.55015, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.37023, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.54509, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.63851, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.55410, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.42485, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.42183, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.45505, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.46794, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.47226, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.42456, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.45685, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.43272, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.36771, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.55183, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.63705, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.42521, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.53956, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.41655, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.41484, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.73056, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.45983, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.37418, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.81820, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.47633, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.58408, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.31559, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.52688, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.49833, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.43552, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.41031, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.46129, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.59626, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.51602, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.47577, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.46887, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.63185, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.41262, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.64657, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.62234, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.57003, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.85078, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.40037, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.36535, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.56257, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.62154, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.52110, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.61404, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.80127, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.64683, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.67185, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.65016, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.63146, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.49639, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.90773, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.45667, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.53502, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.45181, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.68879, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.68481, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.51790, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.46617, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.48844, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.48409, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.57633, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.58570, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.44422, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.54447, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.60822, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.51593, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.47015, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.57860, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.48560, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.68169, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.90066, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.49348, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.42610, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.57148, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.45199, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.71594, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.55426, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.38585, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.51977, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.44091, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.59341, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.42805, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.40194, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.58784, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.41945, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.42227, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.48223, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.51137, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.47112, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.49706, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.43743, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.72512, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.71855, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.66331, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.63655, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.42312, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.49032, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.53618, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.52877, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.59530, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.48830, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.44212, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.50318, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.43399, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.50631, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.50048, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.44948, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.50087, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.43099, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.53586, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.45239, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.50683, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.46685, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.47401, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.43422, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.46331, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.42609, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.34963, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.42052, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.40940, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.65946, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.38875, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.58252, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.61565, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.84336, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.52853, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.51276, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.49912, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.54557, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.38071, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.63637, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.52740, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.66113, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.73969, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.45874, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.50757, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.50496, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.59290, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.44392, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.53272, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.72205, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.54068, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.42878, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.47915, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.56549, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.42444, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.39824, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.52742, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.38850, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.49491, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.41407, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.40515, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.45836, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.42648, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.67188, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.45004, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.50311, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.44036, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.50568, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.35916, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.47922, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.70651, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.38708, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.54214, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.50956, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.44099, LR: 1e-05
+QAT Finetuning 4 / 10, Loss: 0.45393, LR: 1e-05
+               Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95: 100%|█████████████████████████████████████████████████████████████████████| 1000/1000 [03:27<00:00,  4.81it/s]
+                 all        5000       36781       0.716       0.636       0.686       0.493
+
+Evaluating pycocotools mAP... saving _predictions.json...
+loading annotations into memory...
+Done (t=0.51s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=4.65s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=45.26s).
+Accumulating evaluation results...
+DONE (t=9.04s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.50996
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.69554
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.55249
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.34962
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.55930
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.66442
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.38371
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.63607
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.68608
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.53209
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.73499
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.83669
+QAT Finetuning 5 / 10, Loss: 0.43635, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.52775, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.40922, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.44475, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.48718, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.52755, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.50620, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.49906, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.45023, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.47302, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.49486, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.45679, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.35663, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.49959, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.42994, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.62408, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.37224, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.35935, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.38923, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.45296, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.38451, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.39544, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.48176, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.38746, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.54766, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.42861, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.47886, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.34870, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.49048, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.48583, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.39943, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.43682, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.42053, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.41312, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.44475, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.48286, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.39924, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.53654, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.69066, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.56877, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.42585, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.38591, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.80970, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.46186, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.63279, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.45024, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.47761, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.45454, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.49101, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.46856, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.42014, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.44712, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.47090, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.45151, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.43783, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.48794, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.47281, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.47348, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.42833, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.42751, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.62623, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.46396, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.40562, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.39254, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.58300, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.39143, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.38767, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.42032, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.48487, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.39946, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.45706, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.55025, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.35652, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.64091, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.51994, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.47840, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.45573, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.45689, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.35589, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.40955, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.41837, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.55803, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.44149, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.45676, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.43405, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.46691, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.66444, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.47334, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.35460, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.44921, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.51534, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.41099, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.42940, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.46002, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.61331, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.45673, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.40572, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.35041, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.52989, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.47877, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.52191, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.48335, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.46937, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.42276, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.37676, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.42672, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.47851, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.45802, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.54548, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.40132, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.31685, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.42508, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.52256, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.40334, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.35809, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.51509, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.34568, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.53320, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.39512, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.38709, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.36494, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.42089, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.46185, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.49020, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.42765, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.45934, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.43952, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.57159, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.42352, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.44651, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.43722, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.57295, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.41118, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.35946, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.61978, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.56202, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.49997, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.54493, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.48819, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.38357, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.56124, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.46051, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.38016, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.42327, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.48060, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.42842, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.40806, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.66195, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.48556, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.41702, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.37958, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.48081, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.39381, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.45002, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.64316, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.41741, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.44220, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.44076, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.34246, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.38179, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.39450, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.35684, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.60962, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.42851, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 1.25588, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.36918, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.33120, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.44778, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.41085, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.42321, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.42144, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.45359, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.45475, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.47019, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.50869, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.54178, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.38421, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.49765, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.49343, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.39833, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.39821, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.43995, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.46244, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.54303, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.38243, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.48498, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.40990, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.45726, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.38021, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.44817, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.45361, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.51779, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.55655, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.45976, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.46842, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.64115, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.57264, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.52648, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.43006, LR: 1e-05
+QAT Finetuning 5 / 10, Loss: 0.55813, LR: 1e-05
+               Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95: 100%|█████████████████████████████████████████████████████████████████████| 1000/1000 [03:20<00:00,  5.00it/s]
+                 all        5000       36781       0.713       0.638       0.686       0.494
+
+Evaluating pycocotools mAP... saving _predictions.json...
+loading annotations into memory...
+Done (t=0.52s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=4.57s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=51.42s).
+Accumulating evaluation results...
+DONE (t=7.60s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.51077
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.69570
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.55302
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.34735
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.55944
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.66736
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.38421
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.63703
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.68704
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.53538
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.73504
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.83908
+Save qat model to qat_yolov7.pt @ 0.51077
+sucessfully export yolov7 ptq onnx!
+QAT Finetuning 6 / 10, Loss: 0.58828, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.38990, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.51883, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.48069, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.68707, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.40850, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.78967, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.55752, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.82347, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.49300, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.49009, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.48126, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.43091, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.55782, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.44455, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.44538, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.51538, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.52854, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.47219, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.65748, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.39724, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.59590, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.42526, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.81476, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.59985, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.43068, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.52335, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.50154, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.42060, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.58462, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.56702, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.52870, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.47825, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.51954, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.51459, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.38081, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.37716, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.48789, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.56858, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.44136, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.45310, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.50935, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.51226, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.36551, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.44208, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.42498, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.40406, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.39387, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.35114, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.40312, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.41213, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.45737, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.41419, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.47437, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.33937, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.46186, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.41725, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.44325, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.46447, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.37484, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.40998, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.47431, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.40365, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.37707, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.41047, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.42432, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.47406, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.42617, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.44332, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.41229, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.46780, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.69227, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.43048, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.44708, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.31419, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.42680, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.36167, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.39250, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.59764, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.52998, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.44561, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.43099, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.45768, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.51141, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.51324, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.37706, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.49557, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.49687, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.45488, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.35838, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.41122, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.41656, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.45870, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.47731, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.51222, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.41473, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.36867, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.49368, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.47732, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.46967, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.40364, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.38538, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.49773, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.45518, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.42358, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.52375, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.38991, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.46357, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.89675, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.40611, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.41234, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.44979, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.61318, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.50738, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.79638, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.43899, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.46336, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.67900, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.45592, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.50139, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.45857, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.42040, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.60398, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.42123, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.88899, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.66999, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.41040, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.51899, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.52361, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.38518, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.39531, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.46102, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.49571, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.46377, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.50714, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.41700, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.49024, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.42787, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.52454, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.48110, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.44270, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.45756, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.45021, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.63300, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.44748, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.60678, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.50088, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.49644, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.45111, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.46407, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.61362, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.44589, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.46754, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.54159, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 1.31017, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.32821, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.39335, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.49994, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.65682, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.53066, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.52968, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.52600, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.48516, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.41814, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.44099, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.49786, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.47180, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.65218, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.47832, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.52034, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.56344, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.41513, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.44600, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.35125, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.50200, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.38064, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.63967, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.50328, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.42898, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.36639, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.38517, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.55234, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.41153, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.35678, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.34523, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.39143, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.42519, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.37200, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.51258, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.34488, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.34663, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.37126, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.35441, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.58175, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.52852, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.59614, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.47540, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.39813, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.46922, LR: 1e-05
+QAT Finetuning 6 / 10, Loss: 0.54536, LR: 1e-05
+               Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95: 100%|█████████████████████████████████████████████████████████████████████| 1000/1000 [03:18<00:00,  5.03it/s]
+                 all        5000       36781       0.732       0.626       0.686       0.493
+
+Evaluating pycocotools mAP... saving _predictions.json...
+loading annotations into memory...
+Done (t=0.84s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=2.79s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=45.30s).
+Accumulating evaluation results...
+DONE (t=13.07s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.50998
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.69596
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.55214
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.34536
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.55845
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.66537
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.38328
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.63507
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.68535
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.53417
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.73445
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.83469
+QAT Finetuning 7 / 10, Loss: 0.36221, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.54834, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.60642, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.58975, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.43853, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.44165, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.54746, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.47717, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.38210, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.44354, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.46663, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.39028, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.42254, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.48488, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.43106, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.37849, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.34872, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.43752, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.45184, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.42251, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.41079, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.65771, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.34908, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.40488, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.48187, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.49991, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.37325, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.46221, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.32005, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.74047, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.43211, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.34071, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.44368, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.76040, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.42317, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.54777, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.47327, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.49046, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.40628, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.41187, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.37991, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.49112, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.48187, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.37358, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.42404, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.50399, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.44273, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.46897, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.33597, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.46451, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.60810, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.58859, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.39600, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.42634, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.37108, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.35776, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.41441, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.45441, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.39150, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.49532, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.41376, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.41950, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.37525, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.35871, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.54563, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.40384, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.73651, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.37172, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.40548, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.50534, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.40825, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.45452, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.48909, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.32449, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.37801, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.44544, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.32681, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.33992, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.44346, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.38999, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.41721, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.52228, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.42802, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.34739, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.37018, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.49779, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.40441, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.45261, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.35894, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.44744, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.38182, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.42985, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.68313, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.42313, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.62140, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.41488, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.38658, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.44114, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.52812, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.42775, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.41688, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.54850, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.33026, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.43394, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.42317, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.43029, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.40539, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.52155, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.39774, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.39420, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.44810, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.45069, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.46154, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.40868, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.40586, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.52246, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.37670, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.57425, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.48067, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.66167, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.66319, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.50489, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.50135, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.43970, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.44118, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.47060, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.44789, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.50723, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.41097, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.51642, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.38426, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.41082, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.44683, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.42951, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.45183, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.44311, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.43823, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.44285, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.39483, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.35921, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.41828, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.40867, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.39617, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.55609, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.34645, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.40950, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.33425, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.53734, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.44015, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.61352, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.33550, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.44756, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.48924, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.41887, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.44336, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.42242, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.38749, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.38959, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.33988, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.38346, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.44833, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.40113, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.33747, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.38365, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.35058, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.38333, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.39526, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.45894, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.43740, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.40377, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.42202, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.40188, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.45749, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.38428, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.41061, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.28768, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.60276, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.34055, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.42752, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.34564, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.48979, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.57391, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.47598, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.30514, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.33335, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.35066, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.36515, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.47772, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.36154, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.32434, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.41841, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.49652, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.44007, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.39766, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.47807, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.51377, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.58066, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.43219, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.52553, LR: 1e-05
+QAT Finetuning 7 / 10, Loss: 0.62207, LR: 1e-05
+               Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95: 100%|█████████████████████████████████████████████████████████████████████| 1000/1000 [03:19<00:00,  5.02it/s]
+                 all        5000       36781       0.728       0.627       0.686       0.493
+
+Evaluating pycocotools mAP... saving _predictions.json...
+loading annotations into memory...
+Done (t=0.55s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=4.51s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=50.27s).
+Accumulating evaluation results...
+DONE (t=13.69s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.50977
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.69571
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.55179
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.34567
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.55822
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.66407
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.38298
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.63613
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.68639
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.53619
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.73486
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.83452
+QAT Finetuning 8 / 10, Loss: 0.54195, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.52344, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.47970, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.33571, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.41524, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.53382, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.36371, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.49516, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.49537, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.54479, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.49440, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.63276, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.47072, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.38004, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.65404, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.44187, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.57419, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.40919, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.62648, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.49712, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.52298, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.42928, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.45506, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.41020, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.44963, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.49653, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.47666, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.38872, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.55608, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.39355, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.46589, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.39563, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.44436, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.47570, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.34211, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.43345, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.71780, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.51565, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.57408, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.42512, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.44299, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.62209, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.55412, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.61566, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.40721, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.50551, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.44061, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.63019, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.40209, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.53777, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.40475, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.47388, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.40730, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.49266, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.35339, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.54942, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.46651, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.53578, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.37524, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.48266, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.43397, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.43857, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.41659, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.39399, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.62966, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.58676, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.52162, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.60661, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.40165, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.55584, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.34286, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.42018, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.40328, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.46578, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.39702, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.62504, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.49104, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.40708, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.38007, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.66403, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.39677, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.44434, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.38211, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.30299, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.36088, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.59833, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.39740, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.61327, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.59122, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.31618, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.67751, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.50614, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.43672, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.39054, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.51916, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.52864, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.50205, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.47887, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.42897, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.42429, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.42782, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.43814, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.37899, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.37669, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.40971, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.44632, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.40433, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.56743, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.52551, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.37659, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.51071, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.55129, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.39386, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.48064, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.37836, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.52703, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.60319, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.39405, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.52725, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.71452, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.46047, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.42104, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.41645, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.39822, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.42864, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.51416, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.37773, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.48437, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.47186, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.37782, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.46205, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.41644, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.35027, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.35085, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.34771, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.54659, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.41767, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.53566, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.41139, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.34727, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.33343, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.47588, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.31710, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.46737, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.42190, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.37566, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.48861, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.38090, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.38004, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.51384, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.37205, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.42955, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.34592, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.35156, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.37629, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.50082, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.40077, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.52013, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.44387, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.43400, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.60709, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.32428, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.38650, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.49303, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.36620, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.36749, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.35186, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.42230, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.44796, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.33185, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.40786, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.45730, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.39731, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.52852, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.61411, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.47470, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.40442, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.46091, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.51550, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.45482, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.40470, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.41456, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.49756, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.40534, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.51746, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.39640, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.37100, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.63883, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.49801, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.41994, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.39935, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.41998, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.42863, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.40251, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.48184, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.54542, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.47574, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.65336, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.55538, LR: 1e-05
+QAT Finetuning 8 / 10, Loss: 0.41290, LR: 1e-05
+               Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95: 100%|█████████████████████████████████████████████████████████████████████| 1000/1000 [03:06<00:00,  5.35it/s]
+                 all        5000       36781        0.72       0.632       0.685       0.493
+
+Evaluating pycocotools mAP... saving _predictions.json...
+loading annotations into memory...
+Done (t=0.38s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=3.15s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=41.05s).
+Accumulating evaluation results...
+DONE (t=8.55s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.50925
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.69509
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.55077
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.35127
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.55815
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.66301
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.38273
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.63513
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.68532
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.53555
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.73417
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.83502
+QAT Finetuning 9 / 10, Loss: 0.37581, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.47630, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.45651, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.50019, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.41759, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.46695, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.58193, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.43970, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.65434, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.34924, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.49566, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.55882, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.51245, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.41504, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.39742, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.50691, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.42650, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.36373, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.44875, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.36889, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.40116, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.44019, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.39665, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.52447, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.42044, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.44952, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.46112, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.45108, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.35352, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.34867, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.37105, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.36802, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.40796, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.55676, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.39112, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.44111, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.39633, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.34421, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.61118, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.44116, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.33177, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.43335, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.41677, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.41586, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.42015, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.51887, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.33638, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.38905, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.37945, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.38956, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.41874, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.39603, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.55584, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.33359, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.36653, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.40733, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.53913, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.43656, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.39229, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.42343, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.53455, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.43597, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.46740, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.72434, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.31308, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.44381, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.46940, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.42177, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.36367, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.37910, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.53392, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.42433, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.72049, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.48404, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.31943, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.42133, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.36020, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.55001, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.41616, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.40099, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.58225, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.83977, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.45173, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.48721, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.37111, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.46112, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.38713, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.42903, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.46677, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.40701, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.48563, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.42685, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.42742, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.39971, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.42415, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.40696, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.41124, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.41214, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.48750, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.34944, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.32494, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.44692, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.45024, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.40167, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.47922, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.37959, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.35544, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.43452, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.64488, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.37093, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.39226, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.38100, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.47158, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.49189, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.39770, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.34234, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.35868, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.43397, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.43194, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.44029, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.51732, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.37601, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.57777, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.40777, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.42562, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.40006, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.52731, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.50397, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.42230, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.54927, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.36140, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.40610, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.35463, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.38863, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.39427, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.41734, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.43352, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.54221, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.39006, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.35330, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.36227, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.34769, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.39719, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.66693, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.50470, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.46924, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.34283, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.39882, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.52410, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.41781, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.49582, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.33378, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.54681, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.58899, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.47046, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.44852, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.41814, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.47812, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.44379, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.44571, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.29314, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.35677, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.43473, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.48567, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.43460, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.42610, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.34533, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.54935, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.40662, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.49551, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.36168, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.38177, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.38484, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.36975, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.37309, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.42697, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.51593, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.39732, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.32369, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.37800, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.30653, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.44905, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.37619, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.38325, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.46266, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.41542, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.42798, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.33567, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.42568, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.54472, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.60399, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.39330, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.39681, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.37276, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.46587, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.45988, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.34030, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.31885, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.39425, LR: 1e-06
+QAT Finetuning 9 / 10, Loss: 0.51668, LR: 1e-06
+               Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95: 100%|█████████████████████████████████████████████████████████████████████| 1000/1000 [02:43<00:00,  6.13it/s]
+                 all        5000       36781       0.713        0.64       0.686       0.494
+
+Evaluating pycocotools mAP... saving _predictions.json...
+loading annotations into memory...
+Done (t=0.36s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=3.05s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=40.95s).
+Accumulating evaluation results...
+DONE (t=8.32s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.51089
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.69648
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.55278
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.34577
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.56047
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.66526
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.38387
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.63652
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.68680
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.53468
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.73643
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.83611
+Save qat model to qat_yolov7.pt @ 0.51089
+sucessfully export yolov7 ptq onnx!
+QAT Finetuning 10 / 10, Loss: 0.41419, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.37329, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.43596, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.37685, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.31687, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.42156, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.34527, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.35260, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.41259, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.39610, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.44829, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.39640, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.43975, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.71551, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.42768, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.37551, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.41750, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.55024, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.38004, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.51768, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.44775, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.34956, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.41312, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.41700, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.34686, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.38764, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.43473, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.49161, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.48478, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.34228, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.47447, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.43098, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.53719, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.48024, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.41479, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.37159, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.34420, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.34126, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.36254, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.42809, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.63922, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.33983, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.57371, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.33349, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.40184, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.39261, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.38297, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.71502, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.44220, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.38105, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.35546, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.38138, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.43534, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.32332, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.31679, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.45872, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.43690, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.39000, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.52159, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.34142, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.51349, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.38960, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.36700, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.52032, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.35442, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.31527, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.36542, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.37301, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.37906, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.47326, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.50968, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.33008, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.41679, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.41847, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.45153, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.38203, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.40187, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.41791, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.44979, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.39430, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.38152, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.42192, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.36121, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.40265, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.35358, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.33308, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.35990, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.43803, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.37237, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.33644, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.39168, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.35475, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.49310, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.37350, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.39113, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.33476, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.38963, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.47260, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.40413, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.36758, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.40643, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.36446, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.49036, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.35369, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.32853, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.33943, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.30504, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.34964, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.35170, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.39125, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.45344, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.36973, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.36935, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.32772, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.42679, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.35294, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.35858, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.38812, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.33819, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.44834, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.35934, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.38635, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.42300, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.35693, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.49051, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.37916, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.52117, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.35105, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.45325, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.48078, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.48583, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.32340, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.40267, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.44518, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.43591, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.54228, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.33638, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.46635, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.42093, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.50455, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.54250, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.36640, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.47702, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.55706, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.35330, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.36054, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.37238, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.46019, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.31593, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.57379, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.30457, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.37470, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.55250, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.36656, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.42805, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.39757, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.34347, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.45086, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.31352, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.43715, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.39582, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.35313, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.51706, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.34724, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.36928, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.46374, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.38671, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.40409, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.38259, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.41168, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.37609, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.42236, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.40855, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.47113, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.46863, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.46644, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.30431, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.34036, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.35558, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.46834, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.34311, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.35789, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.38421, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.46255, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.45927, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.37439, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.37158, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.43441, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.35369, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.40044, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.36804, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.32080, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.34724, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.43854, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.34879, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.35345, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.45718, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.44064, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.50131, LR: 1e-06
+QAT Finetuning 10 / 10, Loss: 0.52074, LR: 1e-06
+               Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95: 100%|█████████████████████████████████████████████████████████████████████| 1000/1000 [02:40<00:00,  6.25it/s]
+                 all        5000       36781       0.719       0.636       0.686       0.494
+
+Evaluating pycocotools mAP... saving _predictions.json...
+loading annotations into memory...
+Done (t=0.69s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=3.21s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=41.33s).
+Accumulating evaluation results...
+DONE (t=7.54s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.51058
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.69610
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.55260
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.35114
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.55925
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.66565
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.38370
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.63616
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.68629
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.53298
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.73466
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.83704
+QAT Finished ....

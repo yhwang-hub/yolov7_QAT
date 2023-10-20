@@ -60,6 +60,7 @@ if __name__ == '__main__':
     parser.add_argument("--sensitive_summary", type=str, default="sensitive-summary.json", help="summary save file")
     parser.add_argument("--ignore_layers", type=str, default="model\.105\.m\.(.*)", help="regx")
 
+    parser.add_argument("--start_ptq", type=bool, default=False, help="file")
     parser.add_argument("--save_ptq", type=bool, default=False, help="file")
     parser.add_argument("--ptq", type=str, default="ptq_yolov7.onnx", help="file")
 
@@ -87,6 +88,7 @@ if __name__ == '__main__':
     ignore_layers= ["model\.105\.m\.(.*)", "model\.99\.m\.(.*)"]
     args.ignore_layer = ignore_layers
     print("Begining PTQ.....")
-    run_PTQ(args, device)
+    if args.start_ptq:
+        run_PTQ(args, device)
     
     print("PTQ Quantization Has Finished....")
